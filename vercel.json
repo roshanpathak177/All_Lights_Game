@@ -2,7 +2,7 @@
     "name": "alllights-game",
     "builds": [
       {
-        "src": "/index.html",
+        "src": "/templates/index.html",
         "use": "@vercel/static"
       }
     ]
