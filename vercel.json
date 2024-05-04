@@ -1,0 +1,9 @@
+{
+    "name": "alllights-game",
+    "builds": [
+      {
+        "src": "/index.html",
+        "use": "@vercel/static"
+      }
+    ]
+  }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllLights Game</title>
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<div class="container">
+  <h1>AllLights Game</h1>
+  <div class="board-size-selector">
+    <label for="board-size">Select Board Size:</label>
+    <select id="board-size">
+      <option value="3">3x3</option>
+      <option value="4">4x4</option>
+      <option value="5" selected>5x5</option>
+    </select>
+  </div>
+  <div class="game-board"></div>
+  <div class="button-container">
+    <button id="reset-btn">Reset</button>
+    <button id="solution-btn">Show Solution</button>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
