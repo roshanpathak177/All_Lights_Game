@@ -31,12 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
     renderBoard();
   }
 
+  gameBoard.addEventListener('boardSolved', () => {
+    document.body.style.backgroundColor = board.isSolved() ? 'white' : 'black';
+  });
+
   function renderBoard() {
     const squares = gameBoard.querySelectorAll('.square');
     for (let i = 0; i < squares.length; i++) {
       const row = Math.floor(i / board.size);
       const col = i % board.size;
       squares[i].classList.toggle('on', board.board[row][col] === 1);
+    }
+    if (board.isSolved()) {
+      gameBoard.dispatchEvent(new Event('boardSolved'));
     }
   }
 
@@ -50,9 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const b = Array(size * size).fill(1);
     const solution = mod2GaussianElimination(A, b);
     const reshapedSolution = reshapeArray(solution, size);
-    const solutionString = reshapedSolution.map(row => row.join(' ')).join('\n');
-    solutionContainer.textContent = `Solution:\n${solutionString}`;
-    solutionContainer.style.display = 'block';
+    const solutionString = reshapedSolution.map(row => row.join(' | ')).join('\n\n');
+    solutionContainer.textContent = `Solution:\n\n${solutionString}`;
+    solutionContainer.style.display = solutionContainer.style.display === 'none' ? 'block' : 'none';
   }
 
   function reshapeArray(array, newShape) {
@@ -154,6 +161,10 @@ class Board {
     if (col < this.size - 1) {
       this.board[row][col + 1] = 1 - this.board[row][col + 1];
     }
+  }
+
+  isSolved() {
+    return this.board.every(row => row.every(cell => cell === 1));
   }
 
   reset() {
