@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function toggleSquare(col, row) {
     board.toggleSquare(row, col);
     renderBoard();
+    document.body.style.backgroundColor = 'black';
   }
 
   gameBoard.addEventListener('boardSolved', () => {
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function resetBoard() {
     board.reset();
     renderBoard();
+    document.body.style.backgroundColor = 'black';
   }
 
   function showSolution() {
