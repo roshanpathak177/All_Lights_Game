@@ -57,8 +57,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const b = Array(size * size).fill(1);
     const solution = mod2GaussianElimination(A, b);
     const reshapedSolution = reshapeArray(solution, size);
-    const solutionString = reshapedSolution.map(row => row.join(' | ')).join('\n\n');
-    solutionContainer.textContent = `Solution:\n\n${solutionString}`;
+  
+    // Clear the previous solution
+    solutionContainer.innerHTML = '';
+  
+    // Create a grid container for the solution
+    const solutionGrid = document.createElement('div');
+    solutionGrid.classList.add('solution-grid');
+    solutionGrid.style.display = 'grid';
+    solutionGrid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  
+    // Add each row of the solution to the grid
+    reshapedSolution.forEach(row => {
+      const rowElement = document.createElement('div');
+      rowElement.classList.add('solution-row');
+      row.forEach(cell => {
+        const cellElement = document.createElement('div');
+        cellElement.classList.add('solution-cell');
+        cellElement.textContent = cell;
+        rowElement.appendChild(cellElement);
+      });
+      solutionGrid.appendChild(rowElement);
+    });
+  
+    solutionContainer.appendChild(solutionGrid);
+    solutionContainer.classList.toggle('show');
     solutionContainer.style.display = solutionContainer.style.display === 'none' ? 'block' : 'none';
   }
 
