@@ -61,28 +61,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear the previous solution
     solutionContainer.innerHTML = '';
   
-    // Create a grid container for the solution
-    const solutionGrid = document.createElement('div');
-    solutionGrid.classList.add('solution-grid');
-    solutionGrid.style.display = 'grid';
-    solutionGrid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    // Create a pre element to display the solution
+    const solutionPre = document.createElement('pre');
   
-    // Add each row of the solution to the grid
+    // Add each row of the solution to the pre element
     reshapedSolution.forEach(row => {
-      const rowElement = document.createElement('div');
-      rowElement.classList.add('solution-row');
-      row.forEach(cell => {
-        const cellElement = document.createElement('div');
-        cellElement.classList.add('solution-cell');
-        cellElement.textContent = cell;
-        rowElement.appendChild(cellElement);
-      });
-      solutionGrid.appendChild(rowElement);
+      const rowString = row.join('');
+      solutionPre.textContent += rowString + '\n';
     });
   
-    solutionContainer.appendChild(solutionGrid);
-    solutionContainer.classList.toggle('show');
-    solutionContainer.style.display = solutionContainer.style.display === 'none' ? 'block' : 'none';
+    solutionContainer.appendChild(solutionPre);
+    solutionContainer.style.display = 'block';
   }
 
   function reshapeArray(array, newShape) {

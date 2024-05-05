@@ -93,10 +93,12 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
   box-sizing: border-box;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-out;
+  overflow: auto;
+  color: white;
+  font-family: monospace;
+  font-size: 14px;
 }
 
-.solution-container.show {
-  transform: translateX(0);
+.solution-container pre {
+  margin: 0;
 }
